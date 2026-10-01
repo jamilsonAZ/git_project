@@ -1,0 +1,16 @@
+GIT CONFIGURATION
+
+git config --global user.name "Jamilson"
+git config --global user.email "jamil0713@live.com"
+git config --global core.editor "code --wait"
+git config --global core.autocrlf input (en linux y mac)
+git config --global core.autocrlf input (en windows)
+git config --global --list
+
+ls -a (poner visible archivos ocultos)
+
+
+VLC TV
+media/open network steam/paste link/rep. list
+link
+https://iptv-org.github.io/iptv/index.m3u
