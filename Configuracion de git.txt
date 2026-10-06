@@ -1,0 +1,37 @@
+Configuracion de git en linux para visualizacion de la rama en la linea de visualizacion
+
+1. Editar el archivo .bashrc
+Abre la terminal y edita el archivo de configuración usando un editor como nano:
+
+nano ~/.bashrc   
+
+2. Agregar la configuración
+Agrega el siguiente código al final del archivo. Este script define una función que extrae el nombre de la rama activa y la inserta en el prompt, respetando los colores del sistema:
+
+# Función para obtener el nombre de la rama de Git
+parse_git_branch() {
+    git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+
+# Configuración del prompt con colores y rama de Git
+force_color_prompt=yes
+if [ -n "$force_color_prompt" ]; then
+    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+        # Color prompt
+        PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[31m\]$(parse_git_branch)\[\033[00m\]\$ '
+    else
+        # Sin colores
+        PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w$(parse_git_branch)\$ '
+    fi
+else
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+fi
+unset force_color_prompt   
+
+3. Aplicar los cambios
+Guarda el archivo (en nano presiona Ctrl + O, Enter, y luego Ctrl + X) y recarga la configuración de la sesión actual:
+
+source ~/.bashrc   
+
+
+A partir de este momento, el nombre de la rama activa aparecerá entre paréntesis en tu línea de comandos cada vez que estés dentro de un repositorio de Git. 
