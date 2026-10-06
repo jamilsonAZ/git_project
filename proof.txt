@@ -1,1 +1,2 @@
 This is a proof file to tial git commands.
+Now we're gonna check changes on the new branch.
